@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "solid-js": "^1.7.4"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.38.6",
+    "@types/node": "^20.0.0",
+    "eslint": "^8.39.0",
+    "lint-staged": "^13.2.2",
+    "simple-git-hooks": "^2.8.1",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.5",
+    "vite-plugin-solid": "^2.7.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix",
+    "*.js": "eslint --fix"
+  }
+}
