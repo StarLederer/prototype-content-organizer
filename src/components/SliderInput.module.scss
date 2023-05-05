@@ -1,0 +1,90 @@
+@use "~/style/atoms/time";
+@use "~/style/atoms/interactivity";
+
+.root {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    text-align: center;
+    margin-block-end: 2rem;
+    font-size: 1.5rem;
+  }
+
+  [data-labels] {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-block-end: 1rem;
+  }
+
+  [data-slider] {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    // border-radius: 0.25rem;
+    @include interactivity.highlight;
+    @include time.transition;
+  }
+
+  [data-guide] {
+    position: absolute;
+    inset-inline: 0;
+    block-size: 0.25rem;
+    background: var(--bg-1);
+  }
+
+  [data-gutter] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    inset-inline: 0;
+    inset-block: -0.25rem;
+
+    div {
+      inline-size: 1px;
+      block-size: calc(3rem * var(--proximity) + 1rem);
+      opacity: calc(0.25 + 0.55 * var(--proximity));
+      background: var(--accent-1);
+      @include time.transition;
+    }
+  }
+
+  [data-handle] {
+    position: absolute;
+    block-size: 2rem;
+    inline-size: 2rem;
+    background: var(--accent-1);
+    transform: translateX(-50%);
+    border-radius: 50%;
+    @include time.transition;
+  }
+
+  [data-fill] {
+    position: absolute;
+    block-size: 100%;
+    background: var(--accent-1);
+    @include time.transition;
+    border-radius: inherit;
+  }
+
+  input {
+    inline-size: 100%;
+    block-size: 100%;
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    border-radius: 1rem;
+
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      border: none;
+      background: none;
+    }
+  }
+}
