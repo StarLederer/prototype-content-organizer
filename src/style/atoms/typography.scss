@@ -1,0 +1,9 @@
+@use "./spacing.scss";
+
+@mixin font-special {
+
+}
+
+@mixin font-normal {
+  font-family: "Open Sans", Inter, Avenir, Helvetica, Arial, sans-serif;
+}

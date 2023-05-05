@@ -1,0 +1,28 @@
+@mixin theme-light {
+  --accent-1: oklch(65% 0.2 80);
+  --accent-2: oklch(75% 0.2 80 / 0.5);
+  --bg-1: oklch(100% 0 80);
+  --bg-1-1: oklch(0% 0 80);
+}
+
+@mixin theme-dark {
+  --accent-1: oklch(70% 0.2 80);
+  --accent-2: oklch(50% 0.2 80 / 0.5);
+  --bg-1: oklch(10% 0.003 80);
+  --bg-1-1: oklch(90% 0.02 80);
+}
+
+.theme-light,
+:root {
+  @include theme-light;
+}
+
+.theme-dark {
+  @include theme-dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include theme-dark;
+  }
+}

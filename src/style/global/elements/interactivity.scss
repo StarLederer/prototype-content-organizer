@@ -1,0 +1,62 @@
+@use "~/style/atoms/typography.scss";
+@use "~/style/atoms/time.scss";
+@use "~/style/atoms/interactivity.scss";
+
+select,
+textarea,
+input {
+  background: var(--bg-normal-2);
+  color: var(--fg-primary);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  line-height: 1rem;
+}
+
+*::placeholder {
+  color: var(--fg-tertiary);
+  opacity: 1;
+}
+
+label {
+  color: var(--fg-secondary);
+  @include typography.font-special;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+textarea {
+  line-height: 1.5rem;
+  height: 10rem;
+}
+
+select {
+  cursor: pointer;
+}
+
+button,
+input[type="submit"],
+[role="button"] {
+  @include time.transition;
+  @include typography.font-special;
+  display: flex;
+  color: var(--fg-primary);
+  border-radius: 0.5rem;
+  font-weight: 700;
+  padding: 1rem;
+  cursor: pointer;
+
+  &:not(:disabled) {
+    @include interactivity.highlight;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: var(--bg-highlight);
+    color: var(--fg-primary);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: var(--fg-link)
+}

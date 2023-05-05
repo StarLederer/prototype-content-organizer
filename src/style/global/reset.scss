@@ -1,0 +1,73 @@
+@use "../atoms/typography.scss";
+@use "../atoms/spacing.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  background: none;
+  border: none;
+  font: inherit;
+  line-height: 1;
+  color-scheme: light dark;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  @include typography.font-normal;
+  font-size: 12px;
+  font-weight: normal;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  outline-color: var(--accent-1);
+  accent-color: var(--accent-1);
+  color-scheme: light dark;
+  scrollbar-color: var(--accent-1) var(--accent-2);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+
+  &:hover {
+    background-color: var(--accent-2);
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-1);
+  border-radius: 0.25rem;
+}
+
+html,
+body {
+  block-size: 100%;
+}
+
+body {
+  background: var(--bg-1);
+  color: var(--bg-1-1);
+}
+
+@media (min-width: spacing.$inline-tablet) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: spacing.$inline-desktop) {
+  :root {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: spacing.$inline-max) {
+  :root {
+    font-size: 18px;
+  }
+}

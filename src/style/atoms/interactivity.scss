@@ -1,0 +1,10 @@
+@mixin highlight {
+  &:focus-visible,
+  &:hover {
+    filter: brightness(1.125);
+  }
+
+  &:active {
+    filter: brightness(1.25);
+  }
+}
