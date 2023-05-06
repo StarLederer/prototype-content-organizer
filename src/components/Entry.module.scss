@@ -31,7 +31,7 @@
       flex-direction: column;
       gap: 2rem;
 
-      span {
+      &>span {
         color: var(--fg-4);
       }
 
