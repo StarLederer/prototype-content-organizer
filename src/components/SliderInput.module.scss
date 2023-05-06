@@ -4,6 +4,11 @@
 .root {
   display: flex;
   flex-direction: column;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+  border-radius: 2rem;
+  @include time.transition;
+
 
   label {
     display: flex;
@@ -87,6 +92,7 @@
 
   &:hover,
   &:focus {
+    background: var(--fg-4);
     color: var(--fg-1);
 
     [data-handle] {
