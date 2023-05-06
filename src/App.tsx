@@ -9,7 +9,7 @@ const Main: Component = () => {
 
   return (
     <form class={styles.root}>
-      <SliderInput value={val} onChange={setVal}/>
+      <SliderInput value={val} onChange={setVal} />
     </form>
   )
 }
