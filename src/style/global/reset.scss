@@ -1,5 +1,6 @@
 @use "../atoms/typography.scss";
 @use "../atoms/spacing.scss";
+@use "../atoms/color";
 
 * {
   padding: 0;
@@ -50,8 +51,9 @@ body {
 }
 
 body {
-  background: var(--surface-1);
-  color: var(--surface-1-1);
+  @include color.props("surface-1");
+  background: var(--bg);
+  color: var(--fg-1);
 }
 
 @media (min-width: spacing.$inline-tablet) {
