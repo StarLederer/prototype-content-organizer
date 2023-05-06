@@ -17,7 +17,7 @@ const Main: Component<IMainProps> = (props) => {
   const min = () => props.min ?? 0
   const max = () => props.max ?? 10
   const range = () => max() - min()
-  const value = () => props.value() ?? 0 - min()
+  const value = () => (props.value() ?? 0) - min()
   const valueNormalized = () => value() / range()
   const factor = 1
 
@@ -55,6 +55,7 @@ const Main: Component<IMainProps> = (props) => {
           }}
         />
       </div>
+
       {/* <div data-labels>
         <span>{min()}</span>
         <span>{max()}</span>
