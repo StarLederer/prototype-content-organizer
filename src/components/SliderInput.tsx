@@ -3,6 +3,7 @@ import { For } from 'solid-js'
 import styles from './SliderInput.module.scss'
 
 interface IMainProps {
+  label: string
   min?: number
   max?: number
   hue?: number
@@ -17,15 +18,12 @@ const Main: Component<IMainProps> = (props) => {
   const max = () => props.max ?? 10
   const range = () => max() - min()
   const value = () => props.value() - min()
+  const valueNormalized = () => value() / range()
   const factor = 1
 
   return (
     <div class={styles.root}>
-      {/* <label for={id}>Axis name here</label> */}
-      <div data-labels>
-        <span>{min()}</span>
-        <span>{max()}</span>
-      </div>
+      <label for={id}>{props.label}</label>
       <div data-slider>
         <div data-gutter>
           <For each={Array(1 + range() * factor)}>
@@ -33,8 +31,8 @@ const Main: Component<IMainProps> = (props) => {
           </For>
         </div>
         <div data-guide />
-        {/* <div data-fill style={`inline-size: ${props.value() * 100}%`} /> */}
-        <div data-handle style={`inset-inline-start: ${value() / range() * 100}%`} />
+        {/* <div data-fill style={`inline-size: ${valueNormalized() * 100}%`} /> */}
+        <div data-handle style={`inset-inline-start: ${valueNormalized() * 100}%`} />
         <input
           id={id}
           type="range"
@@ -44,6 +42,10 @@ const Main: Component<IMainProps> = (props) => {
             props.onChange(Number((a.target as HTMLInputElement).value))
           }}
         />
+      </div>
+      <div data-labels>
+        <span>{min()}</span>
+        <span>{max()}</span>
       </div>
     </div>
   )

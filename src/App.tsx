@@ -1,16 +1,16 @@
 import type { Component } from 'solid-js'
-import { createSignal } from 'solid-js'
+import { For } from 'solid-js'
 import './App.scss'
 import styles from './App.module.scss'
-import SliderInput from '~/components/SliderInput'
+import Entry from '~/components/Entry'
 
 const Main: Component = () => {
-  const [val, setVal] = createSignal<number>(0)
-
   return (
-    <form class={styles.root}>
-      <SliderInput value={val} onChange={setVal} />
-    </form>
+    <div class={styles.root}>
+      <For each={Array(4)}>
+        {() => <Entry />}
+      </For>
+    </div>
   )
 }
 

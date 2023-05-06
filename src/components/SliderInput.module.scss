@@ -6,16 +6,16 @@
   flex-direction: column;
 
   label {
-    text-align: center;
-    margin-block-end: 2rem;
-    font-size: 1.5rem;
+    // text-align: center;
+    // margin-block-end: 1rem;
+    // font-size: 1.5rem;
   }
 
   [data-labels] {
     display: flex;
     justify-content: space-between;
     font-weight: 600;
-    margin-block-end: 1rem;
+    // margin-block-start: 1rem;
     color: var(--fg-2)
   }
 
@@ -31,9 +31,8 @@
 
   [data-guide] {
     position: absolute;
-    inset-inline: -0.125rem;
+    inset-inline: 0;
     block-size: 0.25rem;
-    border-radius: 0.125rem;
     background: var(--fg-1);
   }
 
@@ -51,6 +50,12 @@
       opacity: calc(0.25 + 0.55 * var(--proximity));
       background: var(--fg-1);
       @include time.transition;
+
+      &:first-child,
+      &:last-child {
+        block-size: 2rem;
+        opacity: 1;
+      }
     }
   }
 

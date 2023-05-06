@@ -51,12 +51,12 @@ input[type="submit"],
 
   &:hover,
   &:focus-visible {
-    background: var(--bg-highlight);
-    color: var(--fg-primary);
+    background: var(--accent-1);
+    color: var(--accent-1-1);
   }
 }
 
 a {
   text-decoration: none;
-  color: var(--fg-link)
+  // color: var(--fg-link);
 }

@@ -1,0 +1,35 @@
+@use "~/style/atoms/color";
+
+.root {
+  header {
+    [data-img] {
+      inline-size: 100%;
+      aspect-ratio: 1/1;
+      background: var(--fg-1);
+      border-radius: 2rem;
+    }
+
+    h1 {
+      // text-align: center;
+      margin-inline: 2rem;
+      margin-block: 2rem;
+    }
+  }
+
+  main {
+    @include color.props("surface-2");
+    padding: 2rem;
+    background: var(--bg);
+    border-radius: 2rem;
+
+    h2 {
+      margin-block-end: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+}

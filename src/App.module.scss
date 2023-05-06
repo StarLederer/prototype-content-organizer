@@ -1,9 +1,13 @@
+@use "~/style/atoms/color";
+
 .root {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: center;
-  max-width: 32rem;
+  gap: 8rem;
+  max-width: 34rem; // 32 + 2
+  padding-inline: 2rem;
+  padding-block: 8rem;
   margin: auto;
   block-size: 100%;
 }
