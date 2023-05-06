@@ -1,15 +1,22 @@
+@use "sass:math";
+
+@mixin color($name, $l, $c: 0) {
+  --#{$name}: oklch(#{$l * 100%} #{$c} 260);
+  @for $i from 0 through 4 {
+    $cl: $l * math.pow(1 - math.pow(2, -$i), math.div(1, math.pow($l, 2)));
+    --#{$name}-#{$i + 1}: oklch(#{$cl * 100%} 0 260);
+  }
+}
+
 @mixin theme-light {
-  --accent-1: oklch(65% 0.2 80);
-  --accent-2: oklch(75% 0.2 80 / 0.5);
-  --bg-1: oklch(100% 0 80);
-  --bg-1-1: oklch(0% 0 80);
+  @for $i from 0 through 4 {
+    @include color(surface-#{$i+1}, math.pow(2, math.pow($i, 2) * math.pow(2, -6) * -1));
+  }
+  @include color(accent-1, 0);
+  @include color(accent-2, 0.25);
 }
 
 @mixin theme-dark {
-  --accent-1: oklch(70% 0.2 80);
-  --accent-2: oklch(50% 0.2 80 / 0.5);
-  --bg-1: oklch(10% 0.003 80);
-  --bg-1-1: oklch(90% 0.02 80);
 }
 
 .theme-light,
