@@ -1,0 +1,8 @@
+@mixin props($name) {
+  --bg: var(--#{$name});
+  --fg-1: var(--#{$name}-1);
+  --fg-2: var(--#{$name}-2);
+  --fg-3: var(--#{$name}-3);
+  --fg-4: var(--#{$name}-4);
+  --fg-5: var(--#{$name}-5);
+}
