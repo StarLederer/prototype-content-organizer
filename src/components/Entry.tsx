@@ -82,7 +82,7 @@ const Main: Component = () => {
               const [val, setVal] = createSignal(0)
 
               return <SliderInput
-                label={typeof ax.name === 'string' ? ax.name : `${ax.name[0]} vs ${ax.name[1]}`}
+                label={ax.name}
                 min={ax.min}
                 max={ax.max}
                 value={val}

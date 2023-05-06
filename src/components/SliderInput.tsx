@@ -3,7 +3,7 @@ import { For } from 'solid-js'
 import styles from './SliderInput.module.scss'
 
 interface IMainProps {
-  label: string
+  label: string | [string, string]
   min?: number
   max?: number
   hue?: number
@@ -23,14 +23,22 @@ const Main: Component<IMainProps> = (props) => {
 
   return (
     <div class={styles.root}>
-      <label for={id}>{props.label}</label>
+      {typeof props.label === 'string'
+        ? <label for={id}>{props.label}</label>
+        : <label>
+          <span>{props.label[0]}</span>
+          <span data-vs>vs</span>
+          <span>{props.label[1]}</span>
+        </label>
+      }
+
       <div data-slider>
+        <div data-guide />
         <div data-gutter>
           <For each={Array(1 + range() * factor)}>
-            {(_, i) => <div style={`--proximity: ${(1 - Math.abs(i() / factor - value()) / max()) ** 6}`} />}
+            {(_, i) => <div style={`--proximity: ${(1 - Math.abs(i() / factor / range() - valueNormalized())) ** 4}`} />}
           </For>
         </div>
-        <div data-guide />
         {/* <div data-fill style={`inline-size: ${valueNormalized() * 100}%`} /> */}
         <div data-handle style={`inset-inline-start: ${valueNormalized() * 100}%`} />
         <input
@@ -43,10 +51,10 @@ const Main: Component<IMainProps> = (props) => {
           }}
         />
       </div>
-      <div data-labels>
+      {/* <div data-labels>
         <span>{min()}</span>
         <span>{max()}</span>
-      </div>
+      </div> */}
     </div>
   )
 }
