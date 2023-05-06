@@ -5,20 +5,20 @@
 select,
 textarea,
 input {
-  background: var(--bg-normal-2);
-  color: var(--fg-primary);
+  // background: var(--bg);
+  // color: var(--fg-1);
   padding: 1rem;
   border-radius: 0.5rem;
   line-height: 1rem;
 }
 
 *::placeholder {
-  color: var(--fg-tertiary);
+  color: var(--fg-3);
   opacity: 1;
 }
 
 label {
-  color: var(--fg-secondary);
+  color: var(--fg-2);
   @include typography.font-special;
   font-weight: 600;
   cursor: pointer;
@@ -39,7 +39,7 @@ input[type="submit"],
   @include time.transition;
   @include typography.font-special;
   display: flex;
-  color: var(--fg-primary);
+  color: var(--fg-1);
   border-radius: 0.5rem;
   font-weight: 700;
   padding: 1rem;
@@ -51,8 +51,8 @@ input[type="submit"],
 
   &:hover,
   &:focus-visible {
-    background: var(--accent-1);
-    color: var(--accent-1-1);
+    background: var(--fg-4);
+    // color: var(--accent-1-1);
   }
 }
 
