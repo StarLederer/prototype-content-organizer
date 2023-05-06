@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  gap: 0.5rem;
+
+
+  @for $i from 1 through 4 {
+    [data-bg-#{$i}] {
+      @include color.props(surface-#{$i});
+      background: var(--bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      border: solid 1px #fff1;
+
+      :nth-child(1) {
+        color: var(--fg-1);
+      }
+
+      :nth-child(2) {
+        color: var(--fg-2);
+      }
+
+      :nth-child(3) {
+        color: var(--fg-3);
+      }
+
+      :nth-child(4) {
+        color: var(--fg-4);
+      }
+
+      :nth-child(5) {
+        color: var(--fg-5);
+      }
+    }
+  }
+}
