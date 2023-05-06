@@ -88,7 +88,7 @@ const Main: Component = () => {
                   label={ax.name}
                   min={ax.min}
                   max={ax.max}
-                  value={() => state[ax.id] ?? 0}
+                  value={() => state[ax.id]}
                   onChange={v => setState(ax.id, v)}
                 />
               </span>

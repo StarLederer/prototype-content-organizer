@@ -100,4 +100,8 @@
       }
     }
   }
+
+  &[data-unset="true"] {
+    color: var(--fg-3);
+  }
 }

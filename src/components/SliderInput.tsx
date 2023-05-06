@@ -7,7 +7,7 @@ interface IMainProps {
   min?: number
   max?: number
   hue?: number
-  value: () => number
+  value: () => number | undefined
   onChange: (value: number) => void
 }
 
@@ -17,12 +17,12 @@ const Main: Component<IMainProps> = (props) => {
   const min = () => props.min ?? 0
   const max = () => props.max ?? 10
   const range = () => max() - min()
-  const value = () => props.value() - min()
+  const value = () => props.value() ?? 0 - min()
   const valueNormalized = () => value() / range()
   const factor = 1
 
   return (
-    <div class={styles.root}>
+    <div class={styles.root} data-unset={props.value() === undefined}>
       {typeof props.label === 'string'
         ? <label for={id}>{props.label}</label>
         : <label>
@@ -51,7 +51,7 @@ const Main: Component<IMainProps> = (props) => {
             props.onChange(Number((a.target as HTMLInputElement).value))
           }}
           onClick={() => {
-            props.onChange(props.value())
+            props.onChange(props.value() ?? 0)
           }}
         />
       </div>
