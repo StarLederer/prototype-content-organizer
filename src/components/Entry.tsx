@@ -82,16 +82,14 @@ const Main: Component = () => {
         <form class={styles.form}>
           <For each={axis}>
             {ax => (
-              <span data-has-val={state[ax.id]}>
-                <SliderInput
-                  data-off
-                  label={ax.name}
-                  min={ax.min}
-                  max={ax.max}
-                  value={() => state[ax.id]}
-                  onChange={v => setState(ax.id, v)}
-                />
-              </span>
+              <SliderInput
+                data-off
+                label={ax.name}
+                min={ax.min}
+                max={ax.max}
+                value={() => state[ax.id]}
+                onChange={v => setState(ax.id, v)}
+              />
             )}
           </For>
         </form>
