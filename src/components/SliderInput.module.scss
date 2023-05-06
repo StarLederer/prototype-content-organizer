@@ -65,7 +65,7 @@
     position: absolute;
     block-size: 1.5rem;
     inline-size: 1.5rem;
-    background: var(--fg-1);
+    background: currentColor;
     transform: translateX(-50%);
     border-radius: 50%;
     @include time.transition;
@@ -99,6 +99,8 @@
 
   &:hover,
   &:focus {
+    color: var(--fg-1);
+
     [data-handle] {
       block-size: 2rem;
       inline-size: 2rem;

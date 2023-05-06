@@ -46,8 +46,12 @@ const Main: Component<IMainProps> = (props) => {
           type="range"
           min={min()}
           max={max()}
-          value={props.value()} onInput={(a) => {
+          value={props.value()}
+          onInput={(a) => {
             props.onChange(Number((a.target as HTMLInputElement).value))
+          }}
+          onClick={() => {
+            props.onChange(props.value())
           }}
         />
       </div>

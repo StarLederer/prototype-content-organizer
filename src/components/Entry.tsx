@@ -1,5 +1,6 @@
 import type { Component } from 'solid-js'
-import { For, createSignal } from 'solid-js'
+import { For } from 'solid-js'
+import { createStore } from 'solid-js/store'
 import styles from './Entry.module.scss'
 import SliderInput from '~/components/SliderInput'
 
@@ -67,6 +68,8 @@ const axis: {
 ]
 
 const Main: Component = () => {
+  const [state, setState] = createStore<Record<number, number>>({})
+
   return (
     <article class={styles.root}>
       <header>
@@ -78,17 +81,18 @@ const Main: Component = () => {
         <h2>Axis</h2>
         <form class={styles.form}>
           <For each={axis}>
-            {(ax) => {
-              const [val, setVal] = createSignal(0)
-
-              return <SliderInput
-                label={ax.name}
-                min={ax.min}
-                max={ax.max}
-                value={val}
-                onChange={setVal}
-              />
-            }}
+            {ax => (
+              <span data-has-val={state[ax.id]}>
+                <SliderInput
+                  data-off
+                  label={ax.name}
+                  min={ax.min}
+                  max={ax.max}
+                  value={() => state[ax.id] ?? 0}
+                  onChange={v => setState(ax.id, v)}
+                />
+              </span>
+            )}
           </For>
         </form>
       </main>
