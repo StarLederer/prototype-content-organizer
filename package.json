@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
+    "@iconify-json/ph": "^1.1.5",
     "@types/node": "^20.0.0",
     "eslint": "^8.39.0",
     "lint-staged": "^13.2.2",
@@ -19,6 +20,7 @@
     "sass": "^1.62.1",
     "simple-git-hooks": "^2.8.1",
     "typescript": "^5.0.4",
+    "unplugin-icons": "^0.16.1",
     "vite": "^4.3.5",
     "vite-plugin-solid": "^2.7.0"
   },
