@@ -17,7 +17,7 @@ const Main: ParentComponent = (props) => {
 
   return (
     <context.Provider value={{ onContextMenu }}>
-      <ContextMenu defaultOpen={false}>
+      <ContextMenu defaultOpen={false} style={{ display: 'contents' }}>
         {({ isOpen }) => (
           <>
             {props.children}
