@@ -1,6 +1,8 @@
 import type { Component } from 'solid-js'
 import { For } from 'solid-js'
+import { ContextMenuBoundary } from 'solid-headless'
 import styles from './SliderInput.module.scss'
+import { useContextMenu } from '~/components/contextMenu'
 
 interface IMainProps {
   label: string | [string, string]
@@ -21,6 +23,12 @@ const Main: Component<IMainProps> = (props) => {
   const valueNormalized = () => value() / range()
   const factor = 1
 
+  const contextMenuCtx = useContextMenu()
+
+  const onClick = () => {
+    props.onChange(props.value() ?? 0)
+  }
+
   return (
     <div class={styles.root} data-unset={props.value() === undefined}>
       {typeof props.label === 'string'
@@ -32,7 +40,7 @@ const Main: Component<IMainProps> = (props) => {
         </label>
       }
 
-      <div data-slider>
+      <div data-visual>
         <div data-guide />
         <div data-gutter>
           <For each={Array(1 + range() * factor)}>
@@ -41,6 +49,9 @@ const Main: Component<IMainProps> = (props) => {
         </div>
         {/* <div data-fill style={`inline-size: ${valueNormalized() * 100}%`} /> */}
         <div data-handle style={`inset-inline-start: ${valueNormalized() * 100}%`} />
+      </div>
+
+      <ContextMenuBoundary>
         <input
           id={id}
           type="range"
@@ -50,16 +61,10 @@ const Main: Component<IMainProps> = (props) => {
           onInput={(a) => {
             props.onChange(Number((a.target as HTMLInputElement).value))
           }}
-          onClick={() => {
-            props.onChange(props.value() ?? 0)
-          }}
+          onClick={onClick}
+          onContextMenu={contextMenuCtx?.onContextMenu}
         />
-      </div>
-
-      {/* <div data-labels>
-        <span>{min()}</span>
-        <span>{max()}</span>
-      </div> */}
+      </ContextMenuBoundary>
     </div>
   )
 }
