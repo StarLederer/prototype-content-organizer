@@ -25,6 +25,20 @@ const Main: Component<IMainProps> = (props) => {
 
   const contextMenuCtx = useContextMenu()
 
+  const onContextMenu = (e: MouseEvent) => {
+    contextMenuCtx?.setItems([
+      {
+        title: 'Duplicate',
+        callback: () => {},
+      },
+      {
+        title: 'Remove',
+        callback: () => {},
+      },
+    ])
+    contextMenuCtx?.onContextMenu(e)
+  }
+
   const onClick = () => {
     props.onChange(props.value() ?? 0)
   }
@@ -62,7 +76,7 @@ const Main: Component<IMainProps> = (props) => {
             props.onChange(Number((a.target as HTMLInputElement).value))
           }}
           onClick={onClick}
-          onContextMenu={contextMenuCtx?.onContextMenu}
+          onContextMenu={onContextMenu}
         />
       </ContextMenuBoundary>
     </div>
