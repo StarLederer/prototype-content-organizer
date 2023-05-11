@@ -1,10 +1,10 @@
 import type { Component } from 'solid-js'
-import { For, Show, createSignal } from 'solid-js'
+import { Index, Show, createSignal } from 'solid-js'
 import { ContextMenuBoundary } from 'solid-headless'
 import styles from './Axis.module.scss'
 import SliderVisual, { inputStyle } from './SliderVisual'
 import { useContextMenu } from '~/components/contextMenu'
-import type { Axis, Coordinate } from '~/api'
+import type { Axis, AxisId, Coordinate, Vector } from '~/api'
 
 const Slider: Component<{
   id: string
@@ -48,7 +48,7 @@ const Slider: Component<{
 const Main: Component<{
   axis: Axis
   coordinate: Coordinate | undefined
-  setCoordinate: (next: Coordinate | undefined) => void
+  updateVector: (setter: (vec: Vector, axis: AxisId) => void) => void
 }> = (props) => {
   const id = 'a'
 
@@ -60,12 +60,21 @@ const Main: Component<{
   const onContextMenu = (e: MouseEvent) => {
     contextMenuCtx?.setItems([
       {
-        title: 'Duplicate',
-        callback: () => { },
+        title: Array.isArray(props.coordinate) ? 'Add entry' : 'Multiple values',
+        callback: () => {
+          props.updateVector((vec, ax) => {
+            if (Array.isArray(vec[ax]))
+              (vec[ax] as number[]).push(0)
+            else
+              vec[ax] = [vec[ax] as number, 0]
+          })
+        },
       },
       {
-        title: 'Remove',
-        callback: () => props.setCoordinate(undefined),
+        title: Array.isArray(props.coordinate) ? 'Remove all' : 'Remove',
+        callback: () => props.updateVector((vec, ax) => {
+          delete vec[ax]
+        }),
       },
     ])
     contextMenuCtx?.onContextMenu(e)
@@ -94,19 +103,19 @@ const Main: Component<{
             min={min()}
             max={max()}
             value={props.coordinate as number}
-            setValue={v => props.setCoordinate(v)}
+            setValue={v => props.updateVector((vec, ax) => vec[ax] = v)}
           />
         }
       >
-        <For each={props.coordinate as number[]}>
-          {coord => <Slider
+        <Index each={props.coordinate as number[]}>
+          {(coord, i) => <Slider
             id={id}
             min={min()}
             max={max()}
-            value={coord}
-            setValue={() => props.setCoordinate(0)}
+            value={(coord())}
+            setValue={v => props.updateVector((vec, ax) => (vec[ax] as number[])[i] = v)}
           />}
-        </For>
+        </Index>
       </Show>
 
     </ContextMenuBoundary>

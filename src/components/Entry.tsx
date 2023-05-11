@@ -1,5 +1,6 @@
 import type { Component } from 'solid-js'
-import { For, createSignal } from 'solid-js'
+import { For } from 'solid-js'
+import { createStore, produce } from 'solid-js/store'
 import styles from './Entry.module.scss'
 import Button from './buttons/Button'
 import Editor from '~/components/Axis'
@@ -69,7 +70,7 @@ export interface Props {
 }
 
 const Main: Component<Props> = (props) => {
-  const [patch, setPatch] = createSignal<Vector>({})
+  const [patch, setPatch] = createStore<Vector>({})
 
   return (
     <article class={styles.root}>
@@ -85,17 +86,8 @@ const Main: Component<Props> = (props) => {
             {ax => (
               <Editor
                 axis={ax}
-                coordinate={patch()[ax.id]}
-                setCoordinate={v => setPatch((prev) => {
-                  const next = { ...prev }
-
-                  if (v === undefined)
-                    delete next[ax.id]
-                  else
-                    next[ax.id] = v
-
-                  return next
-                })}
+                coordinate={patch[ax.id]}
+                updateVector={v => setPatch(produce(vec => v(vec, ax.id)))}
               />
             )}
           </For>
@@ -103,7 +95,7 @@ const Main: Component<Props> = (props) => {
       </main>
 
       <Button
-        variant={Object.keys(patch()).length <= 0 ? 'ghost' : 'primary'}
+        variant={Object.keys(patch).length <= 0 ? 'ghost' : 'primary'}
         onClick={() => {
           props.setTrack({
             vector: {
