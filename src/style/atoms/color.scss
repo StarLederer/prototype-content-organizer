@@ -6,3 +6,8 @@
   --fg-4: var(--#{$name}-4);
   --fg-5: var(--#{$name}-5);
 }
+
+@mixin bgfg($n: 1, $bg: 'background', $fg: 'color') {
+  #{$bg}: var(--bg);
+  #{$fg}: var(--fg-#{$n});
+}
