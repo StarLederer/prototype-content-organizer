@@ -13,7 +13,9 @@
     @include color(surface-#{$i+1}, math.pow(2, math.pow($i, 2) * math.pow(2, -6) * -1));
   }
   @include color(accent-1, 0);
+  --accent-1-1: white;
   @include color(accent-2, 0.25);
+  --accent-2-1: white;
 }
 
 @mixin theme-dark {
