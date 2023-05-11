@@ -1,14 +1,19 @@
+@use "~/style/atoms/color";
+
 .tertiary {
-  background: var(--bg-tertiary);
-  color: var(--fg-primary);
+  @include color.props("accent-3");
 }
 
 .secondary {
-  background: var(--bg-secondary);
-  color: var(--bg-normal-2);
+  @include color.props("accent-2");
 }
 
 .primary {
-  background: var(--bg-primary);
-  color: var(--fg-on-primary);
+  @include color.props("accent-1");
+}
+
+.tertiary,
+.secondary,
+.primary {
+  @include color.bgfg;
 }
