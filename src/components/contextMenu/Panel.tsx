@@ -17,7 +17,7 @@ const Main: Component<{
     }}
   >
     <For each={props.items}>
-      {item => <Button>{item.title}</Button>}
+      {item => <Button onClick={item.callback}>{item.title}</Button>}
     </For>
   </ContextMenuPanel>
 )
