@@ -1,7 +1,8 @@
 import type { Component } from 'solid-js'
-import { For } from 'solid-js'
+import { createSignal } from 'solid-js'
 import { ContextMenuBoundary } from 'solid-headless'
-import styles from './SliderInput.module.scss'
+import styles from './Axis.module.scss'
+import SliderVisual, { inputStyle } from './SliderVisual'
 import { useContextMenu } from '~/components/contextMenu'
 
 interface IMainProps {
@@ -16,12 +17,10 @@ interface IMainProps {
 const Main: Component<IMainProps> = (props) => {
   const id = 'a'
 
+  const [active, setActive] = createSignal(false)
+
   const min = () => props.min ?? 0
   const max = () => props.max ?? 10
-  const range = () => max() - min()
-  const value = () => (props.value() ?? 0) - min()
-  const valueNormalized = () => value() / range()
-  const factor = 1
 
   const contextMenuCtx = useContextMenu()
 
@@ -29,11 +28,11 @@ const Main: Component<IMainProps> = (props) => {
     contextMenuCtx?.setItems([
       {
         title: 'Duplicate',
-        callback: () => {},
+        callback: () => { },
       },
       {
         title: 'Remove',
-        callback: () => {},
+        callback: () => { },
       },
     ])
     contextMenuCtx?.onContextMenu(e)
@@ -44,7 +43,11 @@ const Main: Component<IMainProps> = (props) => {
   }
 
   return (
-    <div class={styles.root} data-unset={props.value() === undefined}>
+    <ContextMenuBoundary
+      class={styles.root}
+      data-unset={props.value() === undefined}
+      onContextMenu={onContextMenu}
+    >
       {typeof props.label === 'string'
         ? <label for={id}>{props.label}</label>
         : <label>
@@ -54,18 +57,18 @@ const Main: Component<IMainProps> = (props) => {
         </label>
       }
 
-      <div data-visual>
-        <div data-guide />
-        <div data-gutter>
-          <For each={Array(1 + range() * factor)}>
-            {(_, i) => <div style={`--proximity: ${(1 - Math.abs(i() / factor / range() - valueNormalized())) ** 4}`} />}
-          </For>
-        </div>
-        {/* <div data-fill style={`inline-size: ${valueNormalized() * 100}%`} /> */}
-        <div data-handle style={`inset-inline-start: ${valueNormalized() * 100}%`} />
-      </div>
+      <div
+        class={styles.slider}
+        onMouseEnter={() => setActive(true)}
+        onMouseLeave={() => setActive(false)}
+      >
+        <SliderVisual
+          min={min()}
+          max={max()}
+          value={() => props.value() ?? 0}
+          active={active()}
+        />
 
-      <ContextMenuBoundary>
         <input
           id={id}
           type="range"
@@ -76,10 +79,10 @@ const Main: Component<IMainProps> = (props) => {
             props.onChange(Number((a.target as HTMLInputElement).value))
           }}
           onClick={onClick}
-          onContextMenu={onContextMenu}
+          class={inputStyle}
         />
-      </ContextMenuBoundary>
-    </div>
+      </div>
+    </ContextMenuBoundary>
   )
 }
 

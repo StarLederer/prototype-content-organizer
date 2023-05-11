@@ -1,0 +1,51 @@
+@use "~/style/atoms/time";
+@use "~/style/atoms/interactivity";
+@use "~/style/atoms/color";
+
+.root {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 1rem;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+  border-radius: 2rem;
+  @include time.transition;
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    color: var(--fg-2);
+
+    [data-vs] {
+      display: none;
+    }
+  }
+
+  &:hover,
+  &:focus-within {
+    @include color.props("surface-3");
+    background: var(--bg);
+  }
+
+  &[data-unset="true"] {
+    color: var(--fg-3);
+  }
+}
+
+.slider {
+  position: relative;
+  border-radius: 1rem;
+  align-items: stretch;
+
+  input {
+    inline-size: calc(100% + 2rem);
+    block-size: 100%;
+    align-self: stretch;
+    position: absolute;
+    inset: 0;
+    inset-inline: -1rem;
+    border-radius: inherit;
+  }
+}

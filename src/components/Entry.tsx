@@ -2,7 +2,7 @@ import type { Component } from 'solid-js'
 import { For } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import styles from './Entry.module.scss'
-import SliderInput from '~/components/SliderInput'
+import Axis from '~/components/Axis'
 
 let id = -1
 
@@ -82,8 +82,7 @@ const Main: Component = () => {
         <form class={styles.form}>
           <For each={axis}>
             {ax => (
-              <SliderInput
-                data-off
+              <Axis
                 label={ax.name}
                 min={ax.min}
                 max={ax.max}
