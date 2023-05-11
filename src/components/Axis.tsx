@@ -1,26 +1,59 @@
 import type { Component } from 'solid-js'
-import { createSignal } from 'solid-js'
+import { For, Show, createSignal } from 'solid-js'
 import { ContextMenuBoundary } from 'solid-headless'
 import styles from './Axis.module.scss'
 import SliderVisual, { inputStyle } from './SliderVisual'
 import { useContextMenu } from '~/components/contextMenu'
+import type { Axis, Coordinate } from '~/api'
 
-interface IMainProps {
-  label: string | [string, string]
-  min?: number
-  max?: number
-  hue?: number
-  value: () => number | undefined
-  onChange: (value: number) => void
-}
-
-const Main: Component<IMainProps> = (props) => {
-  const id = 'a'
-
+const Slider: Component<{
+  id: string
+  min: number
+  max: number
+  value: number
+  setValue: (next: number) => void
+}> = (props) => {
   const [active, setActive] = createSignal(false)
 
-  const min = () => props.min ?? 0
-  const max = () => props.max ?? 10
+  return (
+    (
+      <div
+        class={styles.slider}
+        onMouseEnter={() => setActive(true)}
+        onMouseLeave={() => setActive(false)}
+      >
+        <SliderVisual
+          min={props.min}
+          max={props.max}
+          value={() => props.value ?? 0}
+          active={active()}
+        />
+
+        <input
+          id={props.id}
+          type="range"
+          min={props.min}
+          max={props.max}
+          value={props.value}
+          onInput={(a) => {
+            props.setValue(Number((a.target as HTMLInputElement).value))
+          }}
+          class={inputStyle}
+        />
+      </div>
+    )
+  )
+}
+
+const Main: Component<{
+  axis: Axis
+  coordinate: Coordinate | undefined
+  setCoordinate: (next: Coordinate | undefined) => void
+}> = (props) => {
+  const id = 'a'
+
+  const min = () => props.axis.min ?? 0
+  const max = () => props.axis.max ?? 10
 
   const contextMenuCtx = useContextMenu()
 
@@ -32,56 +65,50 @@ const Main: Component<IMainProps> = (props) => {
       },
       {
         title: 'Remove',
-        callback: () => { },
+        callback: () => props.setCoordinate(undefined),
       },
     ])
     contextMenuCtx?.onContextMenu(e)
   }
 
-  const onClick = () => {
-    props.onChange(props.value() ?? 0)
-  }
-
   return (
     <ContextMenuBoundary
       class={styles.root}
-      data-unset={props.value() === undefined}
+      data-unset={props.coordinate === undefined}
       onContextMenu={onContextMenu}
     >
-      {typeof props.label === 'string'
-        ? <label for={id}>{props.label}</label>
+      {typeof props.axis.name === 'string'
+        ? <label for={id}>{props.axis.name}</label>
         : <label>
-          <span>{props.label[0]}</span>
+          <span>{props.axis.name[0]}</span>
           <span data-vs>vs</span>
-          <span>{props.label[1]}</span>
+          <span>{props.axis.name[1]}</span>
         </label>
       }
 
-      <div
-        class={styles.slider}
-        onMouseEnter={() => setActive(true)}
-        onMouseLeave={() => setActive(false)}
+      <Show
+        when={Array.isArray(props.coordinate)}
+        fallback={
+          <Slider
+            id={id}
+            min={min()}
+            max={max()}
+            value={props.coordinate as number}
+            setValue={v => props.setCoordinate(v)}
+          />
+        }
       >
-        <SliderVisual
-          min={min()}
-          max={max()}
-          value={() => props.value() ?? 0}
-          active={active()}
-        />
+        <For each={props.coordinate as number[]}>
+          {coord => <Slider
+            id={id}
+            min={min()}
+            max={max()}
+            value={coord}
+            setValue={() => props.setCoordinate(0)}
+          />}
+        </For>
+      </Show>
 
-        <input
-          id={id}
-          type="range"
-          min={min()}
-          max={max()}
-          value={props.value()}
-          onInput={(a) => {
-            props.onChange(Number((a.target as HTMLInputElement).value))
-          }}
-          onClick={onClick}
-          class={inputStyle}
-        />
-      </div>
     </ContextMenuBoundary>
   )
 }

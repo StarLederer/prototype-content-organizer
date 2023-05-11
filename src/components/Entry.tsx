@@ -1,17 +1,13 @@
 import type { Component } from 'solid-js'
-import { For } from 'solid-js'
-import { createStore } from 'solid-js/store'
+import { For, createSignal } from 'solid-js'
 import styles from './Entry.module.scss'
-import Axis from '~/components/Axis'
+import Button from './buttons/Button'
+import Editor from '~/components/Axis'
+import type { Axis, Track, Vector } from '~/api'
 
 let id = -1
 
-const axis: {
-  id: number
-  name: string | [string, string]
-  min: number
-  max: number
-}[] = [
+const axis: Axis[] = [
   // Beat
   {
     id: ++id,
@@ -67,8 +63,13 @@ const axis: {
   },
 ]
 
-const Main: Component = () => {
-  const [state, setState] = createStore<Record<number, number>>({})
+export interface Props {
+  track: Track
+  setTrack: (v: Track) => void
+}
+
+const Main: Component<Props> = (props) => {
+  const [patch, setPatch] = createSignal<Vector>({})
 
   return (
     <article class={styles.root}>
@@ -82,17 +83,38 @@ const Main: Component = () => {
         <form class={styles.form}>
           <For each={axis}>
             {ax => (
-              <Axis
-                label={ax.name}
-                min={ax.min}
-                max={ax.max}
-                value={() => state[ax.id]}
-                onChange={v => setState(ax.id, v)}
+              <Editor
+                axis={ax}
+                coordinate={patch()[ax.id]}
+                setCoordinate={v => setPatch((prev) => {
+                  const next = { ...prev }
+
+                  if (v === undefined)
+                    delete next[ax.id]
+                  else
+                    next[ax.id] = v
+
+                  return next
+                })}
               />
             )}
           </For>
         </form>
       </main>
+
+      <Button
+        variant={Object.keys(patch()).length <= 0 ? 'ghost' : 'primary'}
+        onClick={() => {
+          props.setTrack({
+            vector: {
+              ...props.track.vector,
+              ...patch,
+            },
+          })
+        }}
+      >
+        Save
+      </Button>
     </article>
   )
 }

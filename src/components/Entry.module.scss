@@ -22,6 +22,7 @@
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
+    margin-block-end: 1rem;
 
     h2 {
       margin: 2rem;
@@ -32,5 +33,10 @@
       flex-direction: column;
       gap: 0.25rem;
     }
+  }
+
+  button {
+    padding-inline: 2rem;
+    border-radius: 2rem;
   }
 }
