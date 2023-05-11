@@ -60,7 +60,7 @@ const Main: Component<{
   const onContextMenu = (e: MouseEvent) => {
     contextMenuCtx?.setItems([
       {
-        title: Array.isArray(props.coordinate) ? 'Add entry' : 'Multiple values',
+        title: Array.isArray(props.coordinate) ? 'Add position' : 'Multiple positions',
         callback: () => {
           props.updateVector((vec, ax) => {
             if (Array.isArray(vec[ax]))
