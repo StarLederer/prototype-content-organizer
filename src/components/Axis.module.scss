@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-between;
     color: var(--fg-2);
+    cursor: unset;
 
     [data-vs] {
       display: none;

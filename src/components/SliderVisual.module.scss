@@ -69,6 +69,8 @@
   -webkit-appearance: none;
   appearance: none;
 
+  cursor: grab;
+
   &::-webkit-slider-thumb,
   &::-moz-range-thumb {
     -webkit-appearance: none;
@@ -76,5 +78,9 @@
 
     border: none;
     background: none;
+  }
+
+  &:active {
+    cursor: grabbing;
   }
 }
