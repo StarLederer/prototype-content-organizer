@@ -5,7 +5,11 @@ import type { ContextMenuItem } from './types'
 import context from './context'
 import Panel from './Panel'
 
-const Main: ParentComponent = (props) => {
+const Main: ParentComponent<{
+  style?: string
+  class?: string
+  attrs?: Record<string, any>
+}> = (props) => {
   const [x, setX] = createSignal(0)
   const [y, setY] = createSignal(0)
 
@@ -20,7 +24,7 @@ const Main: ParentComponent = (props) => {
 
   return (
     <context.Provider value={{ onContextMenu, setItems }}>
-      <ContextMenu defaultOpen={false} style={{ display: 'contents' }}>
+      <ContextMenu defaultOpen={false} class={props.class} style={props.style} {...props.attrs}>
         {({ isOpen }) => (
           <>
             {props.children}
