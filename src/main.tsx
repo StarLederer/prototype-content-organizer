@@ -1,6 +1,6 @@
 import { render } from 'solid-js/web'
-import App from './App'
 import './style'
+import App from './App'
 import { cssProps } from './style/constants'
 
 const root = document.getElementById('root')!
