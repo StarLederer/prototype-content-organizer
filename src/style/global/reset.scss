@@ -17,7 +17,7 @@
 
 :root {
   @include typography.font-normal;
-  font-size: 12px;
+  // font-size: 12px;
   font-weight: normal;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -56,20 +56,20 @@ body {
   color: var(--fg-1);
 }
 
-@media (min-width: spacing.$inline-tablet) {
-  :root {
-    font-size: 14px;
-  }
-}
+// @media (min-width: spacing.$inline-tablet) {
+//   :root {
+//     font-size: 14px;
+//   }
+// }
 
-@media (min-width: spacing.$inline-desktop) {
-  :root {
-    font-size: 16px;
-  }
-}
+// @media (min-width: spacing.$inline-desktop) {
+//   :root {
+//     font-size: 16px;
+//   }
+// }
 
-@media (min-width: spacing.$inline-max) {
-  :root {
-    font-size: 18px;
-  }
-}
+// @media (min-width: spacing.$inline-max) {
+//   :root {
+//     font-size: 18px;
+//   }
+// }
