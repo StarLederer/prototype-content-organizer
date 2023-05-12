@@ -49,6 +49,7 @@ const Main: Component<{
   axis: Axis
   coordinate: Coordinate | undefined
   updateVector: (setter: (vec: Vector, axis: AxisId) => void) => void
+  class?: string
 }> = (props) => {
   const id = 'a'
 
@@ -82,7 +83,7 @@ const Main: Component<{
 
   return (
     <ContextMenuBoundary
-      class={styles.root}
+      class={`${styles.root} ${props.class}`}
       data-unset={props.coordinate === undefined}
       onContextMenu={onContextMenu}
     >

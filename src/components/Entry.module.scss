@@ -1,42 +1,70 @@
 @use "~/style/atoms/color";
 
 .root {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
   header {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-inline: 1rem;
+    gap: 1rem;
+
     [data-img] {
-      inline-size: 100%;
+      inline-size: 8rem;
       aspect-ratio: 1/1;
       background: var(--fg-1);
       border-radius: 2rem;
     }
 
-    h1 {
-      // text-align: center;
-      margin-inline: 2rem;
-      margin-block: 2rem;
+    [data-bar] {
+      color: var(--fg-3)
     }
   }
 
   main {
-    @include color.props("surface-2");
-    background: var(--bg);
-    border-radius: 2rem;
-    display: flex;
-    flex-direction: column;
-    margin-block-end: 1rem;
-
-    h2 {
-      margin: 2rem;
-    }
-
     form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
+      inline-size: 100%;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 100%;
+      overflow: overlay;
+      --gap: 0.5rem;
+      gap: var(--gap);
+      padding-inline: var(--gap);
+      padding-block: 1rem;
+      scroll-snap-type: inline mandatory;
+      scroll-padding:var(--gap);
+      scrollbar-width: none;
+
+      &>*{
+        scroll-snap-align: start;
+      }
     }
   }
 
   button {
     padding-inline: 2rem;
     border-radius: 2rem;
+  }
+}
+
+.card {
+  @include color.props("surface-2");
+  @include color.bgfg;
+
+  border-radius: 2rem;
+  // display: flex;
+  // flex-direction: column;
+  // gap: 0.25rem;
+
+  [data-controls-primary] {
+    display: flex;
+    justify-content: space-between;
   }
 }
