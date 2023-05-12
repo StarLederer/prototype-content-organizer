@@ -15,9 +15,11 @@ const tracks: Track[] = [
 const Main: Component = () => {
   return (
     <ContextMenu>
-      <For each={tracks}>
-        {track => <Entry track={track} setTrack={() => {}} />}
-      </For>
+      <div data-container>
+        <For each={tracks}>
+          {track => <Entry track={track} setTrack={() => { }} />}
+        </For>
+      </div>
     </ContextMenu>
   )
 }
