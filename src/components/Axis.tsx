@@ -5,6 +5,7 @@ import styles from './Axis.module.scss'
 import SliderVisual, { inputStyle } from './SliderVisual'
 import { useContextMenu } from '~/components/contextMenu'
 import type { Axis, AxisId, Coordinate, Vector } from '~/api'
+import nextId from '~/lib/id'
 
 const Slider: Component<{
   id: string
@@ -51,7 +52,7 @@ const Main: Component<{
   updateVector: (setter: (vec: Vector, axis: AxisId) => void) => void
   class?: string
 }> = (props) => {
-  const id = 'a'
+  const id = nextId()
 
   const min = () => props.axis.min ?? 0
   const max = () => props.axis.max ?? 10
