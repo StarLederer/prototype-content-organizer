@@ -24,15 +24,19 @@ const Main: ParentComponent<{
     }
   }
 
+  const close = () => {
+    setOpen(false)
+  }
+
   return (
     <context.Provider value={{ onContextMenu, setItems }}>
-      <ContextMenu class={props.class} style={props.style} {...props.attrs} isOpen={open()}>
+      <ContextMenu class={props.class} style={props.style} {...props.attrs} isOpen={open()} onClose={close}>
         {({ isOpen }) => (
           <>
             {props.children}
 
             <Show when={isOpen}>
-              <Panel pos={[x(), y()]} items={items()} closeMenu={() => setOpen(false)} />
+              <Panel pos={[x(), y()]} items={items()} closeMenu={close} />
             </Show>
           </>
         )}
