@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js'
-import { For } from 'solid-js'
+import { For, Show } from 'solid-js'
 import { createStore, produce } from 'solid-js/store'
 import styles from './Entry.module.scss'
 import Button from './buttons/Button'
@@ -7,6 +7,8 @@ import Axis from '~/components/Axis'
 import PlaybackBar from '~/components/PlaybackBar'
 import { axis } from '~/api'
 import type { Track, Vector } from '~/api'
+
+import IconAdd from '~icons/ph/plus-bold'
 
 const Main: Component<{
   track: Track
@@ -38,15 +40,28 @@ const Main: Component<{
       </aside>
 
       <main>
-
         <form class={styles.form} ref={cardContainer}>
           <For each={axis}>
             {ax => (
-              <Axis
-                axis={ax}
-                coordinate={patch[ax.id]}
-                updateVector={v => setPatch(produce(vec => v(vec, ax.id)))}
-              />
+              <Show
+                when={ax.optional && patch[ax.id] === undefined}
+                fallback={
+                  <Axis
+                    axis={ax}
+                    coordinate={patch[ax.id]}
+                    updateVector={v => setPatch(produce(vec => v(vec, ax.id)))}
+                  />
+                }
+              >
+                <button
+                  type="button"
+                  class={styles.pill}
+                  onClick={() => setPatch(produce(vec => vec[ax.id] = 0))}
+                >
+                  {ax.name}
+                  <IconAdd />
+                </button>
+              </Show>
             )}
           </For>
 
