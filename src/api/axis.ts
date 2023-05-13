@@ -15,18 +15,27 @@ export const axis: Axis[] = [
     name: '2-Step',
     min: 0,
     max: 4,
+    optional: true,
   },
   {
     id: ++id,
-    name: 'House',
+    name: '4-On-The-Floor',
     min: 0,
     max: 4,
   },
   {
     id: ++id,
-    name: 'Exotic',
+    name: 'Cumbia',
     min: 0,
     max: 4,
+    optional: true,
+  },
+  {
+    id: ++id,
+    name: 'Funk Carioca',
+    min: 0,
+    max: 4,
+    optional: true,
   },
 
   // Character
@@ -55,6 +64,13 @@ export const axis: Axis[] = [
     name: ['Bright', 'Dark'],
     min: -2,
     max: 2,
+  },
+  {
+    id: ++id,
+    name: 'Funny',
+    min: 0,
+    max: 2,
+    optional: true,
   },
 ]
 
