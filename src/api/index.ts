@@ -5,6 +5,7 @@ export interface Axis {
   name: string | [string, string]
   min: number
   max: number
+  optional?: boolean
 }
 
 export type Coordinate = number | number[]
