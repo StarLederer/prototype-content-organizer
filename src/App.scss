@@ -19,6 +19,7 @@
     overflow: overlay;
     scroll-snap-type: block mandatory;
     scrollbar-width: none;
+    scroll-snap-stop: always;
 
     &>* {
       inline-size: 100%;
