@@ -2,7 +2,7 @@ import type { Component } from 'solid-js'
 import { For } from 'solid-js'
 import { createStore, produce } from 'solid-js/store'
 import styles from './Entry.module.scss'
-import Button from '~/components/buttons/Button'
+import Button from './buttons/Button'
 import Editor from '~/components/Axis'
 import PlaybackBar from '~/components/PlaybackBar'
 import type { Axis, Track, Vector } from '~/api'
@@ -73,17 +73,6 @@ const Main: Component<{
 
   let cardContainer: HTMLFormElement | undefined
 
-  const view = (i: number) => {
-    if (!cardContainer)
-      return
-
-    cardContainer.children[i].scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'nearest',
-    })
-  }
-
   const save = () => {
     props.setTrack({
       vector: {
@@ -98,35 +87,34 @@ const Main: Component<{
       <header data->
         <div data-img />
         <h1>Track title</h1>
-        <PlaybackBar attrs={{ 'data-bar': true }}/>
       </header>
 
       <main>
+        <aside data-player>
+          <PlaybackBar attrs={{ 'data-bar': true }} />
+        </aside>
+
         <form class={styles.form} ref={cardContainer}>
           <For each={axis}>
-            {(ax, i) => (
-              <div class={styles.card}>
-                <Editor
-                  axis={ax}
-                  coordinate={patch[ax.id]}
-                  updateVector={v => setPatch(produce(vec => v(vec, ax.id)))}
-                />
-                <div data-controls-primary>
-                  <Button type="button" variant="ghost" onClick={() => view(i() - 1)}>Previous</Button>
-                  <Button type="button" variant="primary" onClick={() => view(i() + 1)}>Next</Button>
-                </div>
-              </div>
+            {ax => (
+              <Editor
+                axis={ax}
+                coordinate={patch[ax.id]}
+                updateVector={v => setPatch(produce(vec => v(vec, ax.id)))}
+              />
             )}
           </For>
+
+          <Button
+            variant="primary"
+            onClick={save}
+          >
+            Done
+            {Object.keys(patch).length > 0 && ' *'}
+          </Button>
         </form>
       </main>
 
-      {/* <Button
-        variant={Object.keys(patch).length <= 0 ? 'ghost' : 'primary'}
-        onClick={save}
-      >
-        Save
-      </Button> */}
     </article>
   )
 }

@@ -21,50 +21,43 @@
       background: var(--fg-1);
       border-radius: 2rem;
     }
+  }
+
+  [data-player] {
+    @include color.props("surface-2");
+    @include color.bgfg(3);
+    padding: 1rem;
+    padding-block: 2rem;
+    border-start-start-radius: 2rem;
+    border-start-end-radius: 2rem;
 
     [data-bar] {
-      color: var(--fg-3)
+      // block-size: 2rem;
     }
   }
 
   main {
+    @include color.props("surface-3");
+    @include color.bgfg;
+    // max-block-size: min(50%, 32rem);
+    overflow: auto;
+    overflow: overlay;
+    border-start-start-radius: 2rem;
+    border-start-end-radius: 2rem;
+
     form {
       inline-size: 100%;
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 100%;
-      overflow: overlay;
+      display: flex;
+      flex-direction: column;
       --gap: 0.5rem;
       gap: var(--gap);
-      padding-inline: var(--gap);
-      padding-block: 1rem;
-      scroll-snap-type: inline mandatory;
-      scroll-padding:var(--gap);
-      scrollbar-width: none;
-
-      &>*{
-        scroll-snap-align: start;
-      }
+      padding: var(--gap);
+      // padding-block: 1rem;
     }
   }
 
   button {
     padding-inline: 2rem;
     border-radius: 2rem;
-  }
-}
-
-.card {
-  @include color.props("surface-2");
-  @include color.bgfg;
-
-  border-radius: 2rem;
-  // display: flex;
-  // flex-direction: column;
-  // gap: 0.25rem;
-
-  [data-controls-primary] {
-    display: flex;
-    justify-content: space-between;
   }
 }
