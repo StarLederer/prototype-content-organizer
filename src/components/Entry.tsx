@@ -87,12 +87,14 @@ const Main: Component<{
       <header data->
         <div data-img />
         <h1>Track title</h1>
+        <span>Track artists</span>
       </header>
 
+      <aside data-player>
+        <PlaybackBar attrs={{ 'data-bar': true }} />
+      </aside>
+
       <main>
-        <aside data-player>
-          <PlaybackBar attrs={{ 'data-bar': true }} />
-        </aside>
 
         <form class={styles.form} ref={cardContainer}>
           <For each={axis}>
