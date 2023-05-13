@@ -25,14 +25,14 @@
 
   [data-player] {
     @include color.props("surface-2");
-    @include color.bgfg(3);
+    @include color.bgfg(4);
     padding: 1rem;
     padding-block: 2rem;
     border-start-start-radius: 2rem;
     border-start-end-radius: 2rem;
 
     [data-bar] {
-      // block-size: 2rem;
+      block-size: 2rem;
     }
   }
 
