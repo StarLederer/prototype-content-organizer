@@ -8,6 +8,7 @@ import styles from './Panel.module.scss'
 const Main: Component<{
   pos: [number, number]
   items: ContextMenuItem[]
+  closeMenu: () => void
 }> = props => (
   <ContextMenuPanel
     class={styles.menu}
@@ -17,7 +18,10 @@ const Main: Component<{
     }}
   >
     <For each={props.items}>
-      {item => <Button onClick={item.callback}>{item.title}</Button>}
+      {item => <Button onClick={() => {
+        item.callback()
+        props.closeMenu()
+      }}>{item.title}</Button>}
     </For>
   </ContextMenuPanel>
 )
