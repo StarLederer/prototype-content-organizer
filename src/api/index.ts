@@ -14,3 +14,5 @@ export type Vector = Record<AxisId, Coordinate>
 export interface Track {
   vector: Vector
 }
+
+export * from './axis'
