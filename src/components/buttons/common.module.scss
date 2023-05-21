@@ -9,7 +9,11 @@
 }
 
 .primary {
-  @include color.props("accent-1");
+  &,
+  &:hover,
+  &:active {
+    @include color.props("accent-1");
+  }
 }
 
 .tertiary,

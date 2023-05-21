@@ -1,6 +1,7 @@
 @use "~/style/atoms/typography.scss";
 @use "~/style/atoms/time.scss";
 @use "~/style/atoms/interactivity.scss";
+@use "~/style/atoms/color.scss";
 
 select,
 textarea,
@@ -38,8 +39,9 @@ input[type="submit"],
 [role="button"] {
   @include time.transition;
   @include typography.font-special;
+  @include color.props("accent-1");
+  color: var(--bg);
   display: flex;
-  color: var(--fg-1);
   border-radius: 0.5rem;
   font-weight: 700;
   padding: 1rem;
@@ -51,12 +53,13 @@ input[type="submit"],
 
   &:hover,
   &:focus-visible {
-    background: var(--fg-4);
-    // color: var(--accent-1-1);
+    @include color.props("accent-4");
+    @include color.bgfg;
   }
 }
 
 a {
   text-decoration: none;
-  // color: var(--fg-link);
+  @include color.props("accent-1");
+  color: var(--bg);
 }

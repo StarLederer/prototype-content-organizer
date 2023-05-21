@@ -11,13 +11,13 @@
   padding-inline: 2rem;
   padding-block: 1rem;
   border-radius: 2rem;
-  @include time.transition;
 
   label {
     display: flex;
     justify-content: space-between;
     color: var(--fg-2);
     cursor: unset;
+    @include time.transition;
 
     [data-vs] {
       display: none;
@@ -31,7 +31,15 @@
   }
 
   &[data-unset="true"] {
-    color: var(--fg-3);
+    color: var(--fg-6);
+  }
+
+  &[data-unset="false"] {
+    color: var(--accent-1);
+
+    label {
+      color: var(--fg-1);
+    }
   }
 }
 

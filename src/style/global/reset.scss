@@ -27,7 +27,7 @@
   outline-color: var(--accent-1);
   accent-color: var(--accent-1);
   color-scheme: light dark;
-  scrollbar-color: var(--accent-1) var(--accent-2);
+  scrollbar-color: var(--accent-1) var(--accent-4);
   scrollbar-width: thin;
 }
 
@@ -36,7 +36,7 @@
   block-size: 0.5rem;
 
   &:hover {
-    background-color: var(--accent-2);
+    background-color: var(--accent-4);
   }
 }
 
