@@ -1,24 +1,50 @@
 @use "sass:math";
 
-@mixin color($name, $l, $c: 0) {
-  --#{$name}: oklch(#{$l * 100%} #{$c} 260);
-  @for $i from 0 through 4 {
-    $cl: $l * math.pow(1 - math.pow(2, -$i), math.div(1, math.pow($l, 2)));
-    --#{$name}-#{$i + 1}: oklch(#{$cl * 100%} 0 260);
+@function lerp($a, $b, $t) {
+  @return $a + ($b - $a) * $t;
+}
+
+@mixin surfaces($bg-l-low, $bg-l-high, $contrast-l) {
+  @for $i from 0 to 4 {
+    $bg-l: lerp($bg-l-high, $bg-l-low, math.pow(2, -1 * $i));
+    $bg-c: 0.01;
+    // $bg-c: lerp(0.01, 0, math.pow(2, -1 * $i));
+    --surface-#{$i+1}: oklch(#{$bg-l * 100%} #{$bg-c} 280);
+
+    @for $j from 0 to 6 {
+      $fg-l: lerp($bg-l, $contrast-l, math.pow(math.pow(2, -1 * $j), 0.5));
+      $fg-c: lerp($bg-c, 0.05, math.pow(math.pow(2, -1 * $j), 0.25));
+      --surface-#{$i+1}-#{$j+1}: oklch(#{$fg-l * 100%} #{$fg-c} 280);
+    }
+  }
+}
+
+@mixin accent($i, $bg-l-low, $bg-l-high, $contrast-l-low, $contrast-l-high) {
+  $bg-a: lerp(0, 1, math.pow(2, -1 * $i));
+  $bg-l: lerp($bg-l-high, $bg-l-low, math.pow(2, -1 * $i));
+  --accent-#{$i+1}: oklch(#{$bg-l * 100%} 0.3 280 / #{$bg-a});
+
+  @for $j from 0 to 6 {
+    $fg-a: lerp(0, 1, math.pow(2, -1 * $j * 0.5));
+    $fg-l: lerp($contrast-l-high, $contrast-l-low, math.pow(math.pow(2, -1 * $j), 0.5));
+    --accent-#{$i+1}-#{$j+1}: oklch(#{$fg-l * 100%} 0.3 280 / #{math.pow($fg-a, 0.5)});
   }
 }
 
 @mixin theme-light {
-  @for $i from 0 through 4 {
-    @include color(surface-#{$i+1}, math.pow(2, math.pow($i, 2) * math.pow(2, -6) * -1));
-  }
-  @include color(accent-1, 0);
-  --accent-1-1: white;
-  @include color(accent-2, 0.25);
-  --accent-2-1: white;
+  @include surfaces(0.98, 1, 0);
+  @include accent(0, 0.6, 0.4, 1, 1);
+  @include accent(1, 0.6, 0.4, 1, 1);
+  @include accent(2, 0.6, 0.4, 0, 0.4);
+  @include accent(3, 0.6, 0.4, 0, 0.4);
 }
 
 @mixin theme-dark {
+  @include surfaces(0, 0.3, 1);
+  @include accent(0, 0.6, 0.8, 1, 0.8);
+  @include accent(1, 0.6, 0.8, 1, 0.9);
+  @include accent(2, 0.6, 0.8, 1, 0.8);
+  @include accent(3, 0.6, 0.8, 1, 0.8);
 }
 
 .theme-light,
