@@ -1,39 +1,45 @@
 import type { Component } from 'solid-js'
-import './App.scss'
+import { For } from 'solid-js'
 import styles from './Colors.module.scss'
+
+const ColorCards: Component = () => (
+  <>
+    <For each={Array(4)}>
+      {(_, bg) => (
+        <div data-color data-bg={bg() + 1}>
+          <For each={Array(6)}>
+            {(_, fg) => (
+              <div>{fg() + 1}</div>
+            )}
+          </For>
+        </div>
+      )}
+    </For>
+
+    <For each={Array(4)}>
+      {(_, acc) => (
+        <div data-color data-accent={acc() + 1}>
+          <For each={Array(6)}>
+            {(_, fg) => (
+              <div>{fg() + 1}</div>
+            )}
+          </For>
+        </div>
+      )}
+    </For>
+  </>
+)
 
 const Main: Component = () => {
   return (
-      <div class={styles.root}>
-        <div data-bg-1>
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-        </div>
-        <div data-bg-2>
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-        </div>
-        <div data-bg-3>
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-        </div>
-        <div data-bg-4>
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-        </div>
+    <>
+      <div class={`${styles.root} theme-light`}>
+        <ColorCards />
       </div>
+      <div class={`${styles.root} theme-dark`}>
+        <ColorCards />
+      </div>
+    </>
   )
 }
 
