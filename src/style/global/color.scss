@@ -60,11 +60,11 @@ $h: 290;
 
 @mixin theme-dark {
   @include surfaces(0, 0.3, 1);
-  @include panels(0.4, 0.8, 1);
-  @include accent(0, 0.6, 0.8, 1, 0.8);
-  @include accent(1, 0.6, 0.8, 1, 0.9);
-  @include accent(2, 0.6, 0.8, 1, 0.8);
-  @include accent(3, 0.6, 0.8, 1, 0.8);
+  @include panels(0.4, 0.4, 1);
+  @include accent(0, 0.64, 0.8, 1, 0.8);
+  @include accent(1, 0.64, 0.8, 1, 0.9);
+  @include accent(2, 0.64, 0.8, 1, 0.8);
+  @include accent(3, 0.64, 0.8, 1, 0.8);
 }
 
 .theme-light,
@@ -78,6 +78,6 @@ $h: 290;
 
 @media (prefers-color-scheme: dark) {
   :root {
-    // @include theme-dark;
+    @include theme-dark;
   }
 }
