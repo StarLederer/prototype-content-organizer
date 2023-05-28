@@ -29,6 +29,13 @@
   }
 
   @for $i from 1 through 4 {
+    [data-panel="#{$i}"] {
+      @include color.props(panel-#{$i});
+      background: var(--bg);
+    }
+  }
+
+  @for $i from 1 through 4 {
     [data-accent="#{$i}"] {
       @include color.props(accent-#{$i});
       background: var(--bg);
