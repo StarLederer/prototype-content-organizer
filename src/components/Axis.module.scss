@@ -11,13 +11,15 @@
   padding-inline: 2rem;
   padding-block: 1rem;
   border-radius: 2rem;
+  color: var(--fg-6);
+  transition: var(--duration-x4) var(--ease);
 
   label {
+    color: inherit;
     display: flex;
     justify-content: space-between;
-    color: var(--fg-2);
     cursor: unset;
-    @include time.transition;
+    transition: inherit;
 
     [data-vs] {
       display: none;
@@ -26,19 +28,17 @@
 
   &:hover,
   &:focus-within {
-    @include color.props("surface-3");
-    background: var(--bg);
-  }
-
-  &[data-unset="true"] {
-    color: var(--fg-6);
+    @include color.props("panel-2");
+    @include color.bgfg(3);
+    transition: var(--duration) var(--ease-in);
   }
 
   &[data-unset="false"] {
     color: var(--accent-1);
 
     label {
-      color: var(--fg-1);
+      color: var(--accent-2);
+      transition: var(--duration-x8) var(--ease);
     }
   }
 }
