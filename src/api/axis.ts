@@ -12,6 +12,12 @@ export const axis: Axis[] = [
   },
   {
     id: ++id,
+    name: '4-On-The-Floor',
+    min: 0,
+    max: 4,
+  },
+  {
+    id: ++id,
     name: '2-Step',
     min: 0,
     max: 4,
@@ -19,20 +25,14 @@ export const axis: Axis[] = [
   },
   {
     id: ++id,
-    name: '4-On-The-Floor',
-    min: 0,
-    max: 4,
-  },
-  {
-    id: ++id,
-    name: 'Cumbia',
+    name: 'Funk Carioca',
     min: 0,
     max: 4,
     optional: true,
   },
   {
     id: ++id,
-    name: 'Funk Carioca',
+    name: 'Cumbia',
     min: 0,
     max: 4,
     optional: true,
