@@ -8,6 +8,11 @@
   display: flex;
   align-items: center;
   inset: 0;
+  transition: inherit;
+
+  * {
+    transition: inherit;
+  }
 
   [data-guide] {
     position: absolute;
@@ -28,7 +33,6 @@
       block-size: 0.5rem;
       border-radius: 50%;
       background: currentColor;
-      @include time.transition;
     }
   }
 
@@ -40,28 +44,31 @@
     background: currentColor;
     transform: translateX(-50%);
     border-radius: 50%;
-    @include time.transition;
   }
 
   [data-fill] {
     position: absolute;
-    block-size: 100%;
-    background: currentColor;
-    @include time.transition;
+    block-size: 1.5rem;
     border-radius: inherit;
+    background: currentColor;
   }
 
   &[data-active="true"] {
-    [data-handle] {
+    [data-handle],
+    [data-fill] {
       block-size: 2rem;
+      transition: var(--duration-x2) var(--ease-out-overshoot);
+    }
+
+    [data-handle] {
       inline-size: 2rem;
     }
 
-    [data-gutter] {
-      div {
-        transform: scale(calc(1 + 3 * var(--proximity)));
-      }
-    }
+    // [data-gutter] {
+    //   div {
+    //     transform: scale(calc(1 + 3 * var(--proximity)));
+    //   }
+    // }
   }
 }
 
