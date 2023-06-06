@@ -42,7 +42,7 @@ input[type="submit"],
   @include color.props("accent-1");
   color: var(--bg);
   display: flex;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   font-weight: 700;
   padding: 1rem;
   cursor: pointer;
