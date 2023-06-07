@@ -1,0 +1,61 @@
+@use "~/style/atoms/color";
+
+.root {
+  @include color.props('accent-4');
+  @include color.bgfg(1);
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  text-align: center;
+  position: relative;
+  align-items: center;
+  transition: var(--duration) var(--ease);
+
+  &>input {
+    position: absolute;
+    inset: 0;
+    appearance: none;
+  }
+
+  &>label {
+    display: flex;
+    gap: 0.5rem;
+    position: relative;
+    align-items: center;
+    transition: inherit;
+
+    // Front cover
+    &>img {
+      border-radius: 0.5rem;
+      block-size: 2rem;
+    }
+
+    [data-details] {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      [data-title] {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      [data-artist] {
+        color: var(--fg-4);
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  &:hover{
+    @include color.props('accent-3');
+    @include color.bgfg;
+  }
+
+  &[data-selected="false"] {
+    &>label {
+      opacity: 0.5;
+    }
+  }
+}
