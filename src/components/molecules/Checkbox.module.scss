@@ -1,0 +1,22 @@
+@use "~/style/atoms/color";
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  border-radius: 0.5rem;
+
+  &>* {
+    position: relative;
+    border-radius: inherit;
+    transition: inherit;
+  }
+
+  input {
+    appearance: none;
+    position: absolute;
+    inset: 0;
+    padding: 0;
+  }
+}
