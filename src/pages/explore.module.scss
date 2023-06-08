@@ -1,0 +1,19 @@
+.root {
+  position: relative;
+  block-size: 100%;
+  overflow: auto;
+  overflow: overlay;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+
+  scroll-snap-type: block mandatory;
+  scroll-snap-stop: always;
+  scrollbar-width: none;
+
+  &>* {
+    scroll-snap-align: start;
+    overflow: auto;
+  }
+}
