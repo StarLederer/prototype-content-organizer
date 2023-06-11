@@ -1,6 +1,6 @@
 import { Component, For } from "solid-js";
 
-import Track from '~/components/Track'
+import Track from '~/components/molecules/Track'
 import Checkbox from '~/components/molecules/Checkbox'
 import style from "./PickSection.module.scss"
 
