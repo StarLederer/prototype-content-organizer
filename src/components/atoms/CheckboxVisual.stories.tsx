@@ -4,6 +4,9 @@ import Component from './CheckboxVisual'
 const meta = {
   component: Component,
   tags: ['autodocs'],
+  args: {
+    active: false,
+  },
 } satisfies Meta<typeof Component>
 
 export default meta
