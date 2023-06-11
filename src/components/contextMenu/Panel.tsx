@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 import { For } from 'solid-js'
 import { ContextMenuPanel } from 'solid-headless'
-import Button from '../buttons/Button'
+import Button from '../atoms/buttons/Button'
 import type { ContextMenuItem } from './types'
 import styles from './Panel.module.scss'
 
