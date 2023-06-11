@@ -8,7 +8,7 @@ export function getClass(variant?: Variant) {
     return styles.primary
 
   if (variant === 'secondary')
-    return styles.primary
+    return styles.secondary
 
   if (variant === 'tertiary')
     return styles.tertiary
