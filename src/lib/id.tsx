@@ -1,7 +1,7 @@
 let prevId = -1
 
 export function nextId() {
-  return ++prevId
+  return (++prevId).toString()
 }
 
 export default nextId

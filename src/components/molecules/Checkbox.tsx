@@ -8,7 +8,7 @@ const Main: Component<{
   checked?: boolean
   setChecked?: (val: boolean) => void
 }> = (props) => {
-  const id = `${nextId()}`
+  const id = nextId()
 
   return (
     <div class={style.root}>

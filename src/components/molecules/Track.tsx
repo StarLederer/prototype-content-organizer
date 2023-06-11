@@ -5,7 +5,7 @@ import { nextId } from '~/lib/id'
 import CheckboxVisual from '~/components/atoms/CheckboxVisual'
 
 const Main: Component = () => {
-  const id = `${nextId()}`
+  const id = nextId()
   const [selected, setSelected] = createSignal(true)
 
   return (
