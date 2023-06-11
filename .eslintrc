@@ -1,3 +1,13 @@
 {
-  "extends": ["@antfu"]
+  "extends": ["@antfu"],
+  "overrides": [
+    {
+      "files": ["*.stories.@(ts|tsx)"],
+      "extends": [
+        "plugin:storybook/recommended",
+        "plugin:storybook/csf-strict",
+        "plugin:storybook/csf"
+      ]
+    }
+  ]
 }

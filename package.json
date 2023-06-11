@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@solidjs/router": "^0.8.2",
@@ -14,13 +16,24 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
     "@iconify-json/ph": "^1.1.5",
+    "@storybook/addon-essentials": "^7.0.20",
+    "@storybook/addon-interactions": "^7.0.20",
+    "@storybook/addon-links": "^7.0.20",
+    "@storybook/blocks": "^7.0.20",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@types/node": "^20.0.0",
     "eslint": "^8.39.0",
+    "eslint-plugin-storybook": "^0.6.12",
     "lint-staged": "^13.2.2",
     "postcss": "^8.4.23",
     "postcss-preset-env": "^8.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sass": "^1.62.1",
     "simple-git-hooks": "^2.8.1",
+    "storybook": "^7.0.20",
+    "storybook-solidjs": "^1.0.0-beta.2",
+    "storybook-solidjs-vite": "^1.0.0-beta.2",
     "typescript": "^5.0.4",
     "unplugin-icons": "^0.16.1",
     "vite": "^4.3.5",
