@@ -1,5 +1,11 @@
 @use "~/style/atoms/color";
 
+.tertiary,
+.secondary,
+.primary {
+  @include color.bgfg;
+}
+
 .tertiary {
   @include color.props("accent-3");
 }
@@ -14,10 +20,4 @@
   &:active {
     @include color.props("accent-1");
   }
-}
-
-.tertiary,
-.secondary,
-.primary {
-  @include color.bgfg;
 }
