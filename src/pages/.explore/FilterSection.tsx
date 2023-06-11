@@ -1,5 +1,5 @@
 import { Component, For } from "solid-js";
-import Axis from '~/components/Axis'
+import Axis from '~/components/molecules/Axis'
 import { axis } from '~/api'
 import style from './FilterSection.module.scss'
 
