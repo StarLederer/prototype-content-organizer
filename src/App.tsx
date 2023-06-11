@@ -2,7 +2,7 @@ import type { Component } from 'solid-js'
 import { For } from 'solid-js'
 import './App.scss'
 import type { Track } from './api'
-import Entry from '~/components/Entry'
+import Entry from '~/components/organisms/Entry'
 import ContextMenu from '~/components/contextMenu/Provider'
 
 const tracks: Track[] = [
