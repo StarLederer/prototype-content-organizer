@@ -4,7 +4,7 @@ import { createStore, produce } from 'solid-js/store'
 import styles from './Entry.module.scss'
 import Button from '~/components/atoms/buttons/Button'
 import Axis from '~/components/molecules/Axis'
-import PlaybackBar from '~/components/PlaybackBar'
+import PlaybackBar from '~/components/atoms/PlaybackBar'
 import { axis } from '~/api'
 import type { Track, Vector } from '~/api'
 
