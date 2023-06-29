@@ -1,0 +1,35 @@
+@use "~/style/atoms/color";
+
+.root {
+  block-size: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+
+  &>[data-container] {
+    @include color.props("surface-2");
+    @include color.bgfg;
+    border-radius: 2rem;
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    overflow: hidden;
+  }
+}
+
+.nav {
+  display: flex;
+
+  a {
+    flex: 1;
+    padding-block: 1rem;
+    display: flex;
+    justify-content: center;
+    color: var(--fg-4);
+    font-weight: 600;
+    transition: var(--duration-x2) var(--ease-out);
+
+    &[aria-current] {
+      color: var(--fg-1);
+    }
+  }
+}

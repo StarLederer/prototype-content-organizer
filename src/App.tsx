@@ -1,26 +1,51 @@
-import type { Component } from 'solid-js'
+import type { Component, ParentComponent } from 'solid-js'
 import { For } from 'solid-js'
-import './App.scss'
-import type { Track } from './api'
-import Entry from '~/components/organisms/Entry'
+import { A, Router, useRoutes } from '@solidjs/router'
+
+import styles from './App.module.scss'
+
 import ContextMenu from '~/components/contextMenu/Provider'
 
-const tracks: Track[] = [
-  { vector: {} },
-  { vector: {} },
-  { vector: {} },
-  { vector: {} },
-]
+import routes from '~solid-pages'
+
+const Nav: Component<{
+  items: {
+    title: string
+    href: string
+  }[]
+}> = (props) => {
+  return (
+    <nav class={styles.nav}>
+      <For each={props.items}>
+        {item => (
+          <A href={item.href} >{item.title}</A>
+        )}
+      </For>
+    </nav>
+  )
+}
+
+const Wrappers: ParentComponent = props => (
+  <Router>
+    <ContextMenu class={styles.root}>
+      {props.children}
+    </ContextMenu>
+  </Router>
+)
 
 const Main: Component = () => {
+  const Routes = useRoutes(routes)
+
   return (
-    <ContextMenu>
+    <Wrappers>
       <div data-container>
-        <For each={tracks}>
-          {track => <Entry track={track} setTrack={() => { }} />}
-        </For>
+        <Routes />
       </div>
-    </ContextMenu>
+      <Nav items={[
+        { title: 'Refine', href: '/refine' },
+        { title: 'Explore', href: '/explore' },
+      ]} />
+    </Wrappers>
   )
 }
 

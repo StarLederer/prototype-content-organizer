@@ -1,7 +1,8 @@
 import path from 'node:path'
 import { defineConfig } from 'vite'
-import solid from 'vite-plugin-solid'
 import icons from 'unplugin-icons/vite'
+import solid from 'vite-plugin-solid'
+import pages from 'vite-plugin-pages'
 
 export default defineConfig({
   resolve: {
@@ -11,7 +12,8 @@ export default defineConfig({
   },
 
   plugins: [
-    solid(),
     icons({ compiler: 'solid' }),
+    solid(),
+    pages(),
   ],
 })

@@ -41,6 +41,7 @@
     "typescript": "^5.0.4",
     "unplugin-icons": "^0.16.1",
     "vite": "^4.3.5",
+    "vite-plugin-pages": "^0.31.0",
     "vite-plugin-solid": "^2.7.0"
   },
   "simple-git-hooks": {

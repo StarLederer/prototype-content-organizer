@@ -1,6 +1,6 @@
 import styles from './explore.module.scss'
-import FilterSection from './.explore/FilterSection'
-import PickSection from './.explore/PickSection'
+import FilterSection from './_explore/FilterSection'
+import PickSection from './_explore/PickSection'
 
 function Main() {
   return (
