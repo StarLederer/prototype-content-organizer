@@ -13,7 +13,7 @@ const Main: ParentComponent<{
       type={props.type}
       class={getClass(props.variant)}
       title="title"
-      onClick={props.onClick}
+      onClick={() => props.onClick}
     >
       {props.children}
     </button>
