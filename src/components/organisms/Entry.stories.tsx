@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from 'storybook-solidjs'
 import Component from './Entry'
+import ContextMenu from '~/components/contextMenu/Provider'
 import type { Track } from '~/api'
 
 const track: Track = { vector: {} }
@@ -9,8 +10,9 @@ const meta = {
   tags: ['autodocs'],
   args: {
     track,
-    setTrack: () => {},
+    setTrack: () => { },
   },
+  render: props => <ContextMenu><Component {...props} /></ContextMenu>,
 } satisfies Meta<typeof Component>
 
 export default meta
