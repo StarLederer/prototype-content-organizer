@@ -10,7 +10,7 @@
     },
     "types": [
       "vite/client",
-      "unplugin-icons/types/solid",
+      "unplugin-icons/types/solid"
     ]
   },
   "include": [
