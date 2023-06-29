@@ -8,7 +8,7 @@ const Main: Component<{
   return (
     <div class={styles.root} {...props.attrs}>
       <For each={Array(2 ** 6)}>
-        {() => <div style={`--t: ${Math.random() * 0.5 + 0.5}`} />}
+        {() => <div style={{ '--t': Math.random() * 0.5 + 0.5 }} />}
       </For>
     </div>
   )

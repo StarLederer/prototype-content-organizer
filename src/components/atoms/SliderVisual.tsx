@@ -20,11 +20,11 @@ const Main: Component<Props> = (props) => {
       <div data-guide />
       <div data-gutter>
         <For each={Array(1 + range() * factor)}>
-          {(_, i) => <div style={`--proximity: ${(1 - Math.abs(i() / factor / range() - valueNormalized())) ** 4}`} />}
+          {(_, i) => <div style={{ '--proximity': (1 - Math.abs(i() / factor / range() - valueNormalized())) ** 4 }} />}
         </For>
       </div>
       {/* <div data-fill style={`inline-size: ${valueNormalized() * 100}%`} /> */}
-      <div data-handle style={`--t: ${valueNormalized()}`} />
+      <div data-handle style={{ '--t': valueNormalized() }} />
     </div>
   )
 }
