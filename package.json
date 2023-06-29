@@ -1,12 +1,15 @@
 {
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint --cache .",
+    "lint:fix": "pnpm lint --fix",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@solidjs/router": "^0.8.2",
@@ -23,6 +26,7 @@
     "@storybook/testing-library": "^0.0.14-next.2",
     "@types/node": "^20.0.0",
     "eslint": "^8.39.0",
+    "eslint-plugin-solid": "^0.12.1",
     "eslint-plugin-storybook": "^0.6.12",
     "lint-staged": "^13.2.2",
     "postcss": "^8.4.23",
@@ -43,7 +47,8 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*.ts": "eslint --fix",
-    "*.js": "eslint --fix"
+    "*.{js,ts,tsx,md}": [
+      "eslint --cache --fix"
+    ]
   }
 }

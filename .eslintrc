@@ -1,8 +1,16 @@
 {
-  "extends": ["@antfu"],
+  "plugins": [
+    "solid"
+  ],
+  "extends": [
+    "@antfu",
+    "plugin:solid/typescript"
+  ],
   "overrides": [
     {
-      "files": ["*.stories.@(ts|tsx)"],
+      "files": [
+        "*.stories.@(ts|tsx)"
+      ],
       "extends": [
         "plugin:storybook/recommended",
         "plugin:storybook/csf-strict",
